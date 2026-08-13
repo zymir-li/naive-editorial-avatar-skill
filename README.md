@@ -2,7 +2,9 @@
 
 [English](README.md) · [简体中文](README.zh-CN.md)
 
-A Codex skill that turns a real-person portrait into one identity-preserving square avatar in a calibrated naive hand-drawn editorial style.
+A portable [Agent Skill](https://agentskills.io/) that turns a real-person portrait into one identity-preserving square avatar in a calibrated naive hand-drawn editorial style.
+
+It is not tied to Codex or a specific model. Any Agent Skills-compatible client can load its `SKILL.md`, references, and image assets. Agents without native skill support can still follow the same files directly.
 
 ## Preview
 
@@ -12,29 +14,52 @@ A Codex skill that turns a real-person portrait into one identity-preserving squ
 
 The portrait controls who is drawn. A fictional AI-generated style anchor controls the drawing language. A second fictional range anchor verifies that the same style can support different ages, gender presentations, hairstyles, skin tones, and clothing without becoming an anatomy template.
 
+## Compatibility
+
+The skill follows the open Agent Skills directory format:
+
+- `SKILL.md` contains portable metadata and instructions.
+- `references/` contains the prompt blueprint.
+- `assets/` contains the synthetic calibration images.
+- `agents/openai.yaml` is optional OpenAI/Codex interface metadata; other agents may ignore it.
+
+To execute the complete workflow, an agent needs file and image access plus an image-generation tool that accepts multiple reference images. An agent can install and read the skill without those capabilities, but it cannot produce the final avatar.
+
 ## Install with an AI agent
 
-Send the repository URL to an AI coding agent that can install Codex skills, together with this request:
+Send the repository URL to your agent with this request:
 
 ```text
-Install the naive-editorial-avatar skill from
+Install the Agent Skill from:
 https://github.com/zymir-li/naive-editorial-avatar
 
-Follow the repository's AGENTS.md. Install only the folder
-skills/naive-editorial-avatar as a skill named naive-editorial-avatar,
-verify its required files, and report the installed path.
+Follow the repository's AGENTS.md. Install only
+skills/naive-editorial-avatar using this client's native skill installer
+or skill directory, preserve all references and assets, verify the required
+files, and report the installed path.
 ```
 
-An agent with a skill installer or local filesystem access can complete the installation directly. An agent without installation access can only provide instructions.
+An agent with an installer or filesystem access can complete this directly. Installation paths vary by client.
 
 ## Manual installation
 
-1. Download or clone this repository.
-2. Copy `skills/naive-editorial-avatar` to `${CODEX_HOME}/skills/naive-editorial-avatar`.
-3. If `CODEX_HOME` is not set, use `~/.codex/skills/naive-editorial-avatar`.
-4. Restart Codex if the skill does not appear immediately.
+Copy `skills/naive-editorial-avatar` into a skill directory recognized by your agent.
 
-The installed skill folder should contain:
+For cross-client project installation, use:
+
+```text
+<your-project>/.agents/skills/naive-editorial-avatar/
+```
+
+For cross-client user installation, use:
+
+```text
+~/.agents/skills/naive-editorial-avatar/
+```
+
+Some clients also use a product-specific skill directory. Prefer that location when its documentation requires one. Restart the client or begin a new session if the skill is not discovered immediately.
+
+The installed skill must contain:
 
 ```text
 naive-editorial-avatar/
@@ -45,21 +70,26 @@ naive-editorial-avatar/
 └── references/prompt-blueprint.md
 ```
 
+If your agent has no native skill system, give it the folder and ask it to read `SKILL.md` first, resolve relative paths from that file's directory, and load the referenced assets when instructed.
+
 ## Use
 
 Upload a portrait and ask:
 
 ```text
-Use $naive-editorial-avatar to turn this portrait into a square hand-drawn editorial avatar while preserving the person's identity.
+Use the naive-editorial-avatar skill to turn this portrait into a square
+hand-drawn editorial avatar while preserving the person's identity.
 ```
 
-The skill produces one finished image by default. It protects identity, limits reference-image leakage, and uses explicit acceptance gates for both style and recognizability. User photos remain task-local and must never be added to the reusable skill or its package.
+Clients that support explicit skill invocation may also accept `$naive-editorial-avatar`.
+
+The skill produces one finished image by default. It protects identity, limits reference-image leakage, and applies separate acceptance gates for style and recognizability. User photos remain task-local and must never be added to the reusable skill or its package.
 
 ## Repository layout
 
-- `skills/naive-editorial-avatar/` — the installable skill; no executable installer is required.
-- `examples/` — the source/result pair used in this README.
-- `AGENTS.md` — deterministic installation instructions for AI agents.
+- `skills/naive-editorial-avatar/` — the portable installable skill.
+- `examples/` — the synthetic source/result pair used in this README.
+- `AGENTS.md` — client-neutral installation instructions for AI agents.
 
 ## License
 
