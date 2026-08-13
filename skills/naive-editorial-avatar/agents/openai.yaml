@@ -1,0 +1,4 @@
+interface:
+  display_name: "Naive Editorial Avatar"
+  short_description: "将真人照片稳定转换为保留本人特征的稚拙极简编辑手绘头像"
+  default_prompt: "Use $naive-editorial-avatar to turn my uploaded portrait into the calibrated naive hand-drawn editorial avatar style."
