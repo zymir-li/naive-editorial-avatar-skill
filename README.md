@@ -4,8 +4,6 @@
 
 A portable [Agent Skill](https://agentskills.io/) that turns a real-person portrait into one identity-preserving square avatar in a calibrated naive hand-drawn editorial style.
 
-It is not tied to Codex or a specific model. Any Agent Skills-compatible client can load its `SKILL.md`, references, and image assets. Agents without native skill support can still follow the same files directly.
-
 ## Preview
 
 | Synthetic source portrait | Avatar result |
