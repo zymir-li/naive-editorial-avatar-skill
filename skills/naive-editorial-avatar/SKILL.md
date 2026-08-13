@@ -5,7 +5,7 @@ description: Generate one identity-preserving square avatar from an uploaded rea
 
 # Naive Editorial Avatar
 
-Turn a real person into the same *drawing family* as the synthetic calibration avatars while keeping the person specific. The photo decides **who** is drawn. The synthetic style anchor decides **how** that person is drawn.
+Turn a real person into the same *drawing family* as the synthetic calibration avatars while keeping the person specific. The photo decides **who is drawn and every appearance color**. The synthetic style anchor decides **only how marks, shapes, texture, framing, and simplification are drawn**.
 
 ## Load the calibration resources
 
@@ -51,7 +51,7 @@ For the first generation, pass exactly two images in this role order:
 
 Do not pass the range-check character during normal generation. More references are not automatically better.
 
-The synthetic style anchor must not donate its face, hair, ears, skin tone, clothing, accessories, or identity-specific pose to the new person.
+The synthetic style anchor must not donate its face, hair, ears, skin tone, clothing, accessories, identity-specific pose, or palette to the new person. Treat every color in it as non-authoritative. Derive skin tone, undertone, hair color, eye color, clothing color, eyewear color, and accessory color exclusively from the real-person image.
 
 ## Generate one finished avatar
 
@@ -64,6 +64,8 @@ Preserve from the real person:
 - eyewear and visible-eye character;
 - expression, skin tone, and important distinguishing marks;
 - dominant clothing color or simple neckline cue.
+
+Preserve source colors independently of style. Match the person's visible skin tone and undertone from the photo after allowing only the minimal flattening needed for illustration. Do not warm, tan, darken, lighten, desaturate, or recolor skin toward either synthetic calibration character. Apply the same rule to hair, clothing, eyewear, and accessories.
 
 Translate into the approved drawing family:
 
@@ -103,12 +105,13 @@ When eyes are visible, derive their opening, spacing, and gaze from the real per
 
 For the nose and mouth, preserve identity through their relative width, placement, and curve while staying within the anchor's economy: one short nose mark and one restrained mouth mark. Do not add separate nostril loops, fully outlined lips, a lower-lip contour, or cosmetic lashes merely because the real features are broad, full, mature, or culturally distinctive.
 
-## Apply two hard acceptance gates
+## Apply three hard acceptance gates
 
-Reject the image if either gate fails:
+Reject the image if any gate fails:
 
 1. **Same drawing family** — it should sit naturally beside `synthetic-style-anchor.png`: soft imperfect ink, simple flat fills, cohesive hair, economical face, quiet white background. Reject vector polish, anime, crayon, charcoal, spiky hair fields, gradients, long modeled necks, or detailed scenery.
 2. **Same person** — the face silhouette, hair, eyewear, expression, skin tone, and distinguishing anchors should still read as the uploaded person. Reject genericization or leakage from either synthetic bundled character. For a neutral source, reject eyes that introduce contempt, boredom, smugness, sleepiness, or suspicion that the real person does not show.
+3. **Source-owned colors** — compare the avatar directly with the real-person image, not with either synthetic anchor. Reject any result whose skin, hair, clothing, eyewear, or accessory colors visibly drift toward a calibration character's palette.
 
 Also check that the avatar is neither crowded nor tiny and that blush, if present, is soft and embedded rather than two pasted circles.
 

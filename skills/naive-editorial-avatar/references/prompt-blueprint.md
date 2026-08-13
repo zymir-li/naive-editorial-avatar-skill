@@ -8,12 +8,14 @@ Keep the first-generation prompt short. The image references already carry most 
 Create exactly one square head-and-shoulders avatar.
 
 REFERENCE ROLES
-- Image 1 is a fictional AI-generated style anchor and is the visual canvas. It controls the illustration language, character footprint, white-space rhythm, and overall presentation only.
-- Image 2 is the real person and the only identity authority. Replace the person shown in Image 1 with this person.
+- Image 1 is a fictional AI-generated style anchor and is the visual canvas. It controls only the illustration language, mark economy, texture, character footprint, white-space rhythm, and overall presentation. None of its colors are authoritative.
+- Image 2 is the real person and the exclusive authority for identity and every appearance color. Replace the person shown in Image 1 with this person.
 
 Using Image 1 as the visual canvas, replace its character with the person from Image 2 so they look like an original character from the exact same illustrated series.
 
 Keep the person from Image 2 recognizable. Preserve the real person's face and jaw silhouette, hairstyle silhouette and part, eyewear, eye expression, skin tone, distinguishing features, and dominant clothing color. Do not beautify, genericize, age-shift, or replace their face.
+
+COLOR OWNERSHIP IS STRICT: derive skin tone and undertone, hair color, eye color, clothing color, eyewear color, and accessory color exclusively from Image 2. Image 1 contributes no palette. Match the visible source skin after only minimal flat-illustration simplification. Do not warm, tan, darken, lighten, desaturate, or shift the person toward Image 1's orange-brown skin, black hair, coral shirt, turquoise jewelry, or any other anchor color.
 
 Most important identity anchors from Image 2:
 - [ANCHOR_1]
@@ -36,7 +38,7 @@ Preserve the real eye opening and emotional tone from Image 2. When the source e
 
 Use a natural portrait pose derived from Image 2. Slight asymmetry is welcome; do not force a front-facing ID-photo pose or a dramatic turn. Simplify incidental details and remove the photographed environment, bags, text, and logos.
 
-Avoid retaining Image 1's face, hair, glasses, ears, skin tone, clothing, or identity-specific proportions. Avoid generic corporate vector art, Notion style, anime or kawaii eyes, crayon or charcoal texture, fields of spiky hair, gradients, shadows, 3D modeling, scenery, text, frame, logo, and watermark.
+Avoid retaining Image 1's face, hair, glasses, ears, skin tone, clothing, palette, or identity-specific proportions. Avoid generic corporate vector art, Notion style, anime or kawaii eyes, crayon or charcoal texture, fields of spiky hair, gradients, shadows, 3D modeling, scenery, text, frame, logo, and watermark.
 
 The final image must satisfy both conditions at once: unmistakably the person from Image 2 and unmistakably the drawing family and layout from Image 1.
 ```
@@ -67,6 +69,7 @@ If identity or the overall drawing family is wrong, do not use the local edit pr
 | Looks like a generic avatar | Restart from the person crop; name only the 3–5 most distinctive anchors and prohibit beautification |
 | Looks unlike the person | Shorten the prompt and strengthen Image 2 as exclusive identity authority |
 | Looks unlike the approved style | Strengthen Image 1 as complete drawing-language and layout authority; remove unrelated style references |
+| Skin or clothing inherits Image 1's colors | Restart from the original two references; state that Image 1 contributes zero palette and Image 2 exclusively owns every appearance color |
 | Hair is spiky or scribbled | Ask for the same real hairstyle as one cohesive mass with a few direction marks |
 | Curly or coily hair becomes a repeated decorative pattern | Restart from source and express it as one dominant silhouette with only a few loose direction marks |
 | Darker skin, age, or fuller features cause extra detail | Enforce the same mark budget as the synthetic style anchor; preserve identity via silhouette and placement, not extra nostril, lip, lash, wrinkle, or shadow lines |
